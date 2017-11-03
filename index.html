@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.js"></script>
+   
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+ 
+   <script src="http://ui-grid.info/release/ui-grid.js"></script>
+   
+   <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="main.css" type="text/css">
+  </head>
+  <body>
+
+<div ng-app="app" ng-controller="MainCtrl as vm"  class="container-fluid">
+  
+  <div class="col-md-6 col-md-offset-3">
+    <form name="form" ng-submit="SearchPatient()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.PatientID.$dirty && form.PatientID.$error.required }">
+            <label for="PatientID">Enter Patient Id</label>
+            <input type="text" name="PatientID" id="PatientID" class="form-control" ng-model="PatientID" required />
+            <span ng-show="form.PatientID.$dirty && form.PatientID.$error.required" class="help-block">Patient ID is required</span>
+        </div>
+         <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Search</button>
+            <button type="button" class="btn btn-primary" ng-click="resetDetails()">Reset</button>
+        </div>
+    </form>
+    <br/>
+    <div class="row">
+         <label>Patient Demographic Details</label>    
+         <table class="table">
+          <tbody>
+            <tr>
+              <td>Name </td>
+              <td>{{Name}} </td>
+            </tr>
+            <tr>
+              <td>Gender </td>
+              <td>{{Gender}} </td>
+            </tr>
+            <tr>
+              <td>Date of Birth </td>
+              <td>{{DOB}} </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+ <br/>
+ <div class="row">
+   <h4>Patient Condition Details</h4>
+    <div id="grid1" ui-grid="gridOptions" ui-grid-edit class="grid">
+  </div>
+</div>
+</div>
+
+
+    <script src="app.js"></script>
+    <script src="PatientSearch.js"></script>
+    <script src="MainCtrl.js"></script>
+    
+  </body>
+</html>
